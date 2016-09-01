@@ -6,3 +6,5 @@
 #define		FILE_NAME			FILE_HOLE
 #define		BUFFSIZE			4096
 #define		OPEN_MAX_GUESS		256
+#define		PATH_MAX_GUESS		1024
+#define		SUSV3				200112L
