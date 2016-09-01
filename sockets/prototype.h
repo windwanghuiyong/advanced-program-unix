@@ -1,0 +1,12 @@
+extern int  print_addr_info(char *hostname, char *servname);
+extern void print_hint_flags(void);
+extern void get_hostent(void);
+extern void get_netent(void);
+extern void get_protoent(void);
+extern void get_servent(void);
+extern int  connect_retry(int domian, int type, int protocol, const struct sockaddr *addr, socklen_t alen);
+extern void print_uptime(int sockfd);
+extern int  initserver(int, const struct sockaddr*, socklen_t, int);
+extern void serve(int sockfd);
+extern void daemonize(const char *cmd);
+extern int  set_cloexec(int fd);
