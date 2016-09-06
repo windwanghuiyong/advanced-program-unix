@@ -1,4 +1,6 @@
-	LIMITS OF LIABILITY AND DISCLAIMER OF WARRANTY
+LIMITS OF LIABILITY AND DISCLAIMER OF WARRANTY
+
+库的限制和保修单的免责声明
 
 The author and publisher of the book "Advanced Programming in the
 Unix Environment" have used their best efforts in preparing this

@@ -2,7 +2,7 @@ CC = gcc
 LIBS += -lpthread
 
 OBJECTS = \
-main.o type.o
+main.o type.o access.o mode.o
  
 execute: $(OBJECTS)
 	gcc    -o execute $(OBJECTS) $(LIBS)

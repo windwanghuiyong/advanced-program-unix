@@ -9,6 +9,9 @@ all:	$(PROGS)
 %:	%.c $(LIBAPUE)
 	$(CC) $(CFLAGS) $@.c -o $@ $(LDFLAGS) $(LDLIBS)
 
+
+
+
 conf:	conf.c
 
 conf.c:	makeconf.awk sysconf.sym pathconf.sym
@@ -20,6 +23,9 @@ sysconf.sym:	sysconf-lim.sym
 pathconf.sym:	pathconf-lim.sym
 	grep -v "^#" pathconf-lim.sym >pathconf.sym
 
+
+
+
 options:	options.c
 
 options.c:	makeopt.awk sysopt.sym pathopt.sym
@@ -30,6 +36,10 @@ sysopt.sym:	sysconf-opt.sym
 
 pathopt.sym:	pathconf-opt.sym
 	grep -v "^#" pathconf-opt.sym >pathopt.sym
+
+
+
+
 
 clean:
 	rm -f $(PROGS) $(TEMPFILES) *.o conf.c options.c \

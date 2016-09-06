@@ -4,15 +4,15 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-int file_type(char const *filename)
+int file_type(char const *filepath)
 {
 	int         i;
 	struct stat buf;
 	char        *ptr;
 	
-	printf("%s: ", filename);
+	printf("%s: ", filepath);
 
-	if (lstat(filename, &buf) < 0)
+	if (lstat(filepath, &buf) < 0)
 	{
 		perror("lstat error\n");
 		exit(1);

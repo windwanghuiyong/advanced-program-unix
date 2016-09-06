@@ -39,9 +39,9 @@ char *path_alloc(size_t *sizep) /*also return allocated size, if nonnull */
 		if ((pathmax = pathconf("/", _PC_PATH_MAX)) < 0)	// 基于根目录的相对路径的最大长度
 		{
 			if (errno == 0)		// pathconf 指明 PATH_MAX 不确定，则猜测
-				pathmax = PATH_MAX_GUSS;	// it's indeterminate
+				pathmax = PATH_MAX_GUESS;	// it's indeterminate
 			else
-				err_sys("pathconf error for _PC_PATH_MAX");
+				perror("pathconf error for _PC_PATH_MAX");
 		}
 		else
 		{
@@ -55,7 +55,7 @@ char *path_alloc(size_t *sizep) /*also return allocated size, if nonnull */
 		size = pathmax;
 
 	if ((ptr = malloc(size)) == NULL)
-		err_sys("malloc error for pathname");
+		perror("malloc error for pathname");
 
 	if (sizep != NULL)
 		*sizep = size;	// 传址调用分配的内存的长度
@@ -79,10 +79,10 @@ long open_max(void)
 	static long openmax = 0;
 #endif
 
-	if (open_max == 0)
+	if (openmax == 0)
 	{
 		errno = 0;
-		if (openmax = sysconf(_SC_OPEN_MAX) < 0)
+		if ((openmax = sysconf(_SC_OPEN_MAX)) < 0)
 		{
 			if (errno == 0)					// 返回不确定的值(返回负值但无错误)
 				openmax = OPEN_MAX_GUESS;
