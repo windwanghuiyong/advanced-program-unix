@@ -1,3 +1,6 @@
+#include <sys/types.h>
+#include <unistd.h>
+
 /* 文件状态标志 */
 extern int		get_flag(int fd);
 extern int		set_flag(int fd, int flags);
@@ -21,3 +24,4 @@ extern int nonblock_write(void);
 /* 记录锁 */
 extern int		lock_region(int fd, int cmd, int type, off_t offset, int whence, off_t len);
 extern pid_t	lock_test(int fd, int type, off_t offset, int whence, off_t len);
+extern int		flock_test(void);

@@ -4,6 +4,6 @@
 
 int main(int argc, char const *argv[]) 
 {
-	nonblock_write();
+	flock_test();
 	return 0;
 }

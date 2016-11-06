@@ -1,16 +1,19 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <signal.h>
 #include <string.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 static volatile sig_atomic_t sigflag; /* set nonzero by sig handler */
-static sigset_t newmask, oldmask, zeromask;	// 信号集数据类型
+static sigset_t newmask, oldmask, zeromask;	// 信号屏蔽字
 
 static void sigusr_handler(int signo)	/* one signal handler for SIGUSR1 and SIGUSR2 */
 {
 	sigflag = 1;
 }
 
-void TELL_WAIT(void)
+void initSigSetHandler(void)
 {
 	/* 设置信号处理程序 */
 	if (signal(SIGUSR1, sigusr_handler) == SIG_ERR)
@@ -33,12 +36,12 @@ void TELL_WAIT(void)
 		perror("SIG_BLOCK error");
 }
 
-void TELL_PARENT(pid_t pid)
+void tellParent(pid_t pid)
 {
 	kill(pid, SIGUSR2);		/* tell parent we're done */
 }
 
-void WAIT_PARENT(void)
+void waitParent(void)
 {
 	while (sigflag == 0)
 		sigsuspend(&zeromask);	/* and wait for parent */
@@ -49,12 +52,12 @@ void WAIT_PARENT(void)
 		perror("SIG_SETMASK error");
 }
 
-void TELL_CHILD(pid_t pid)
+void tellChild(pid_t pid)
 {
 	kill(pid, SIGUSR1);			/* tell child we're done */
 }
 
-void WAIT_CHILD(void)
+void waitChild(void)
 {
 	while (sigflag == 0)
 		sigsuspend(&zeromask);	/* and wait for child */

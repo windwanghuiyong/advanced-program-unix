@@ -42,7 +42,7 @@ int file_hole(void)
 void offset_bits(void)
 {
 	// printf("_FILE_OFFSET_BITS = %d\n", _FILE_OFFSET_BITS);		// 32(4字节)
-	printf("off_t width = %lu Bytes\n", sizeof(off_t));			// 8 字节
+	printf("off_t width = %zu Bytes\n", sizeof(off_t));			// 8 字节
 	printf("%ld\n", sysconf(_SC_V6_ILP32_OFF32));
 	printf("%ld\n", sysconf(_SC_V6_ILP32_OFFBIG));
 	printf("%ld\n", sysconf(_SC_V6_LP64_OFF64));

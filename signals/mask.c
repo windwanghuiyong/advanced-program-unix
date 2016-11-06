@@ -1,5 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <signal.h>
 #include <errno.h>
+#include <sys/types.h>  
+#include <unistd.h>  
 
 /******************************************
 	实例 10-4

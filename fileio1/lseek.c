@@ -23,7 +23,7 @@ int stdin_offset(void)
 	}
 	else
 	{
-		printf("stdin current_pos = %lld\n", current_pos);
+		printf("stdin current_pos = %jd\n", current_pos);
 	}
 	return 0;
 }
